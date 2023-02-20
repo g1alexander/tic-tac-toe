@@ -34,14 +34,18 @@ function Home() {
           onClick={() => handleClick("cpu")}
           className="w-full bg-yellow-500 rounded-2xl pb-2"
         >
-          <Btn color="bg-yellow-400">new game (vs cpu)</Btn>
+          <Btn classCSS="bg-yellow-400 rounded-2xl w-full">
+            new game (vs cpu)
+          </Btn>
         </div>
 
         <div
           onClick={() => handleClick("player")}
           className="w-full bg-blue-500 rounded-2xl pb-2"
         >
-          <Btn color="bg-blue-400"> new Game (vs player)</Btn>
+          <Btn classCSS="bg-blue-400 rounded-2xl w-full">
+            new Game (vs player)
+          </Btn>
         </div>
       </article>
     </section>
