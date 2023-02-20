@@ -1,8 +1,16 @@
-function XOutline({ state }: { state: boolean }) {
+function XOutline({
+  state,
+  width = 32,
+  height = 32,
+}: {
+  state: boolean;
+  width?: number;
+  height?: number;
+}) {
   return (
     <svg
-      width="32"
-      height="32"
+      width={`${width}`}
+      height={`${height}`}
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
     >
