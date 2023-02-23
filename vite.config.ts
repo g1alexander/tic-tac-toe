@@ -16,7 +16,11 @@ export default defineConfig({
       "@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
       "@helpers": fileURLToPath(new URL("./src/helpers", import.meta.url)),
       "@router": fileURLToPath(new URL("./src/router", import.meta.url)),
-      "@store": fileURLToPath(new URL("./src/store", import.meta.url)),
+      "@context": fileURLToPath(new URL("./src/context", import.meta.url)),
+      "@hooks": fileURLToPath(new URL("./src/hooks", import.meta.url)),
+      "@interfaces": fileURLToPath(
+        new URL("./src/interfaces", import.meta.url)
+      ),
     },
   },
 });
