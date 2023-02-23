@@ -3,8 +3,15 @@ import Btn from "./Btn";
 import IconO from "@assets/icon-o.svg";
 import IconX from "@assets/icon-x.svg";
 
-export default function Modal() {
-  const [showModal, setShowModal] = useState(true);
+export type ModalType = {
+  title: string;
+  content: string;
+  btnText: string;
+  btnAction: () => void;
+};
+
+export default function Modal(props: ModalType | null) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       {showModal ? (
