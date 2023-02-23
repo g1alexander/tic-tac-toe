@@ -1,23 +1,36 @@
-import { useState, createContext, ReactNode } from "react";
+import {
+  useState,
+  createContext,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import Modal from "@components/shared/Modal";
+import type { Modal as ModalType } from "@interfaces/Modal";
 
-export type ModalType = {
-  title: string;
-  content: string;
-  btnText: string;
-  btnAction: () => void;
+export const state = {
+  showModal: false,
+  title: "",
+  message: {
+    text: "",
+    img: "",
+  },
+  btnYellow: "",
+  btnGray: "",
 };
 
-//TODO: analize this and understand it
-const ModalContext = createContext<{} | null>(null);
+export const ModalContext = createContext<{
+  modal: ModalType;
+  setModal: Dispatch<SetStateAction<ModalType>>;
+}>({ modal: state, setModal: () => {} });
 
 export function ModalProvider({ children }: { children: ReactNode }) {
-  const [modal, setModal] = useState<ModalType | null>(null);
+  const [modal, setModal] = useState<ModalType>(state);
 
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
       {children}
-      {modal && <Modal {...modal} />}
+      {modal?.showModal && <Modal {...modal} />}
     </ModalContext.Provider>
   );
 }
