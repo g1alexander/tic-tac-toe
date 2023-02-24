@@ -1,6 +1,3 @@
-import IconO from "@assets/icon-o.svg";
-import IconX from "@assets/icon-x.svg";
-
 interface GridGame {
   id: number;
   value: string;
@@ -15,29 +12,29 @@ export const gridGame: GridGame[] = [
   },
   {
     id: 2,
-    value: "X",
-    icon: IconX,
+    value: "",
+    icon: "",
   },
   {
     id: 3,
-    value: "O",
-    icon: IconO,
+    value: "",
+    icon: "",
   },
   {
     id: 4,
     value: "X",
-    icon: IconX,
+    icon: "",
   },
 
   {
     id: 5,
-    value: "O",
-    icon: IconO,
+    value: "",
+    icon: "",
   },
   {
     id: 6,
     value: "X",
-    icon: IconX,
+    icon: "",
   },
   {
     id: 7,
@@ -46,12 +43,12 @@ export const gridGame: GridGame[] = [
   },
   {
     id: 8,
-    value: "O",
-    icon: IconO,
+    value: "",
+    icon: "",
   },
   {
     id: 9,
     value: "X",
-    icon: IconX,
+    icon: "",
   },
 ];
