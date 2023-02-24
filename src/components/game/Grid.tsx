@@ -1,9 +1,8 @@
 import Btn from "@components/shared/Btn";
-import { gridGame } from "@helpers/gridGame";
-import { useState } from "react";
+import { useGame } from "@hooks/useGame";
 
 function Grid() {
-  const [ticTacToe, setTicTacToe] = useState(gridGame);
+  const { ticTacToe } = useGame();
 
   return (
     <section className="grid grid-cols-3 gap-5 w-[90%] mx-auto mb-10">
