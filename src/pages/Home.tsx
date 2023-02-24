@@ -2,13 +2,19 @@ import OOutline from "@components/icons/OOutline";
 import XOutline from "@components/icons/XOutline";
 import Btn from "@components/shared/Btn";
 import Logo from "@components/shared/Logo";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
+  const [pickPlayer, setPickPlayer] = useState<boolean>(true);
 
   const handleClick = (typeGame: string) =>
-    navigate("/game", { state: { typeGame } });
+    navigate("/game", {
+      state: { typeGame, pickPlayer: pickPlayer ? "X" : "O" },
+    });
+
+  const handlePickPlayer = () => setPickPlayer(!pickPlayer);
 
   return (
     <section className="h-screen flex flex-col items-center justify-center gap-10">
@@ -18,11 +24,21 @@ function Home() {
         <h1 className="font-bold mb-5 text-lg">PICK PLAYER 1’S MARK</h1>
 
         <article className="bg-black-400 py-3 rounded-lg flex w-full mb-5">
-          <button className="w-1/2 mx-auto flex justify-center items-center">
-            <XOutline state={true} />
+          <button
+            onClick={() => !pickPlayer && handlePickPlayer()}
+            className={`${
+              pickPlayer && `bg-gray-400 rounded-lg px-3 py-3 ml-3`
+            } w-1/2 mx-auto flex justify-center items-center`}
+          >
+            <XOutline state={!pickPlayer} />
           </button>
-          <button className="bg-gray-400 rounded-lg flex justify-center items-center px-6 py-3 w-1/2 mx-auto mr-3">
-            <OOutline state={false} />
+          <button
+            onClick={() => pickPlayer && handlePickPlayer()}
+            className={`${
+              !pickPlayer && `bg-gray-400 rounded-lg px-6 py-3 mr-3`
+            } w-1/2 mx-auto flex justify-center items-center`}
+          >
+            <OOutline state={pickPlayer} />
           </button>
         </article>
 
