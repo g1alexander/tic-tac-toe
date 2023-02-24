@@ -6,7 +6,7 @@ import Restart from "@assets/icon-restart.svg";
 function Header() {
   return (
     <section className="flex justify-between items-center py-4 mb-10 w-[85%] mx-auto">
-      <Logo width={6} height={6} />
+      <Logo width={7} height={7} />
 
       <div className="bg-black-500 pb-[0.2rem] rounded-[0.2rem]">
         <Btn classCSS="flex bg-black-300 rounded-[0.2rem] gap-2 py-[0.4rem]">
