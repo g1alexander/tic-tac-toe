@@ -1,9 +1,15 @@
 import Btn from "@components/shared/Btn";
-import { useGame } from "@hooks/useGame";
+import { Score as IScore } from "@hooks/useScore";
 
-function Score() {
-  const { pickPlayer, score, typeGame } = useGame();
-
+function Score({
+  typeGame,
+  pickPlayer,
+  score,
+}: {
+  typeGame: string;
+  pickPlayer: string;
+  score: IScore;
+}) {
   const handleCPU = (isBlue: boolean) => {
     if (typeGame === "player") return isBlue ? "p1" : "p2";
 
