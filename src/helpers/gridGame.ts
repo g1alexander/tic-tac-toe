@@ -1,4 +1,4 @@
-interface GridGame {
+export interface GridGame {
   id: number;
   value: string;
   icon: string;
@@ -22,7 +22,7 @@ export const gridGame: GridGame[] = [
   },
   {
     id: 4,
-    value: "X",
+    value: "",
     icon: "",
   },
 
@@ -33,7 +33,7 @@ export const gridGame: GridGame[] = [
   },
   {
     id: 6,
-    value: "X",
+    value: "",
     icon: "",
   },
   {
@@ -48,7 +48,7 @@ export const gridGame: GridGame[] = [
   },
   {
     id: 9,
-    value: "X",
+    value: "",
     icon: "",
   },
 ];
