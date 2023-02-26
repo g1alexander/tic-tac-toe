@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTurn } from "./useTurn";
 import { useScore } from "./useScore";
+import { useWin } from "./useWin";
 import { gridGame } from "@helpers/gridGame";
 
 import IconO from "@assets/icon-o.svg";
@@ -12,6 +13,8 @@ export function useTicTacToe() {
   const [isTurnX, handleTurn] = useTurn();
 
   const [typeGame, pickPlayer, score] = useScore();
+
+  const { win } = useWin();
 
   const handleTicTacToe = (id: number) => {
     const newTicTacToe = ticTacToe.map((item) => {
@@ -30,6 +33,21 @@ export function useTicTacToe() {
     setTicTacToe(newTicTacToe);
     handleTurn(!isTurnX);
   };
+
+  const checkWinner = (turn: string) => {
+    const invertTurn = turn === "X" ? "O" : "X";
+
+    const filterTurn = ticTacToe
+      .filter((item) => item.value === invertTurn)
+      .map((item) => item.id);
+
+    win(invertTurn, filterTurn, pickPlayer);
+  };
+
+  useEffect(() => {
+    console.log(pickPlayer);
+    checkWinner(isTurnX ? "X" : "O");
+  }, [isTurnX]);
 
   return {
     // state
