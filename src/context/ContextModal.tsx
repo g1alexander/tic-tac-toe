@@ -14,6 +14,7 @@ export const state = {
   message: {
     text: "",
     img: "",
+    color: "",
   },
   btnYellow: "",
   btnGray: "",

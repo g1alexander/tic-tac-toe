@@ -1,7 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Btn from "./Btn";
-import IconO from "@assets/icon-o.svg";
-import IconX from "@assets/icon-x.svg";
 
 import type { Modal } from "@interfaces/Modal";
 import { ModalContext, state } from "@context/ContextModal";
@@ -47,7 +45,7 @@ export default function Modal({
                       {message.img ? (
                         <>
                           <img src={message.img} alt="" className="w-7" />
-                          <span className="block text-yellow-400">
+                          <span className={`${message.color} block`}>
                             {message.text}
                           </span>
                         </>

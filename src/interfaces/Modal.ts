@@ -9,4 +9,5 @@ export interface Modal {
 export interface Message {
   img: string;
   text: string;
+  color: string;
 }
