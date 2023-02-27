@@ -3,8 +3,25 @@ import Btn from "@components/shared/Btn";
 import Logo from "@components/shared/Logo";
 import OOutline from "@components/icons/OOutline";
 import Restart from "@assets/icon-restart.svg";
+import { ModalContext } from "@context/ContextModal";
+import { useContext } from "react";
 
 function Header({ isTurnX }: { isTurnX: boolean }) {
+  const modal = useContext(ModalContext);
+
+  const handleRestart = () => {
+    modal?.setModal({
+      showModal: true,
+      title: "restart game?",
+      message: {
+        text: "",
+        img: "",
+        color: "",
+      },
+      btnYellow: "yes, restart",
+      btnGray: "no, cancel",
+    });
+  };
   return (
     <section className="flex justify-between items-center py-4 mb-10 w-[85%] mx-auto">
       <Logo width={7} height={7} />
@@ -20,7 +37,7 @@ function Header({ isTurnX }: { isTurnX: boolean }) {
         </Btn>
       </div>
 
-      <div className="rounded-md bg-gray-500 pb-1">
+      <div onClick={handleRestart} className="rounded-md bg-gray-500 pb-1">
         <Btn classCSS="bg-gray-400 rounded-md pb-2">
           <img src={Restart} alt="" className="w-4" />
         </Btn>
