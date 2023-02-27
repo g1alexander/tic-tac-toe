@@ -163,23 +163,25 @@ export function useWin() {
     if (playerWin === "X") {
       setScore({
         ...score,
-        playerX: score.playerX + 1,
+        playerX: score.playerX + 0.5,
       });
     }
 
     if (playerWin === "O") {
       setScore({
         ...score,
-        playerO: score.playerO + 1,
+        playerO: score.playerO + 0.5,
       });
     }
 
     if (playerWin === "tie") {
       setScore({
         ...score,
-        ties: score.ties + 1,
+        ties: score.ties + 0.5,
       });
     }
+
+    return playerWin;
   };
 
   return { win, checkWinner };
