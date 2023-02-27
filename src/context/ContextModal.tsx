@@ -18,6 +18,7 @@ export const state = {
   },
   btnYellow: "",
   btnGray: "",
+  isNextRound: false,
 };
 
 export const ModalContext = createContext<{

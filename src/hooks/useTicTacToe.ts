@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTurn } from "./useTurn";
 import { useScore } from "./useScore";
 import { useWin } from "./useWin";
@@ -6,8 +6,11 @@ import { gridGame } from "@helpers/gridGame";
 
 import IconO from "@assets/icon-o.svg";
 import IconX from "@assets/icon-x.svg";
+import { ModalContext } from "@context/ContextModal";
 
 export function useTicTacToe() {
+  const { modal, setModal } = useContext(ModalContext);
+
   const [ticTacToe, setTicTacToe] = useState(gridGame);
 
   const [isTurnX, handleTurn] = useTurn();
@@ -68,6 +71,16 @@ export function useTicTacToe() {
   useEffect(() => {
     checkWinner(isTurnX ? "X" : "O");
   }, [isTurnX]);
+
+  useEffect(() => {
+    if (modal.isNextRound) {
+      setTicTacToe(gridGame);
+      setModal({
+        ...modal,
+        isNextRound: false,
+      });
+    }
+  }, [modal.isNextRound]);
 
   return {
     // state

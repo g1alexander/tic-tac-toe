@@ -4,6 +4,7 @@ export interface Modal {
   message: Message;
   btnGray: string;
   btnYellow: string;
+  isNextRound: boolean;
 }
 
 export interface Message {

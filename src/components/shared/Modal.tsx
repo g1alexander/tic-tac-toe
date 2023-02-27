@@ -25,11 +25,8 @@ export default function Modal({
     modal?.setModal(state);
   };
 
-  const handleNewRound = () => {
-    modal?.setModal(state);
+  const handleNewRound = () => modal?.setModal({ ...state, isNextRound: true });
 
-    //todo: F
-  };
   return (
     <>
       {showModal ? (
