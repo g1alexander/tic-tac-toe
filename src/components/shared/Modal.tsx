@@ -3,6 +3,7 @@ import Btn from "./Btn";
 
 import type { Modal } from "@interfaces/Modal";
 import { ModalContext, state } from "@context/ContextModal";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal({
   showModal,
@@ -12,6 +13,23 @@ export default function Modal({
   title,
 }: Modal) {
   const modal = useContext(ModalContext);
+  const navigate = useNavigate();
+
+  const handleBtnGray = (btn: string) => {
+    if (btn === "quit") {
+      modal?.setModal(state);
+
+      return navigate("/", { replace: true });
+    }
+
+    modal?.setModal(state);
+  };
+
+  const handleNewRound = () => {
+    modal?.setModal(state);
+
+    //todo: F
+  };
   return (
     <>
       {showModal ? (
@@ -45,6 +63,7 @@ export default function Modal({
 
                     <div className="flex justify-center items-center gap-2 mt-3">
                       <div
+                        onClick={() => handleBtnGray(btnGray)}
                         className={`${
                           btnGray === "quit" ? `w-1/4` : `w-auto`
                         } bg-gray-500 rounded-2xl pb-2`}
@@ -54,7 +73,10 @@ export default function Modal({
                         </Btn>
                       </div>
 
-                      <div className="w-1/2 lg:w-auto bg-yellow-500 rounded-2xl pb-2">
+                      <div
+                        onClick={handleNewRound}
+                        className="w-1/2 lg:w-auto bg-yellow-500 rounded-2xl pb-2"
+                      >
                         <Btn classCSS="bg-yellow-400 rounded-2xl w-full">
                           {btnYellow}
                         </Btn>
