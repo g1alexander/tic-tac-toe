@@ -11,7 +11,14 @@ function Score({
   score: IScore;
 }) {
   const handleCPU = (isBlue: boolean) => {
-    if (typeGame === "player") return isBlue ? "p1" : "p2";
+    console.log(pickPlayer);
+    if (typeGame === "player") {
+      if (isBlue) {
+        return pickPlayer === "X" ? "p1" : "p2";
+      }
+
+      return pickPlayer === "O" ? "p1" : "p2";
+    }
 
     if (isBlue) return pickPlayer === "X" ? "you" : "cpu";
 
