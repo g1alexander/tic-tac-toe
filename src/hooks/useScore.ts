@@ -9,7 +9,7 @@ export interface Score {
   ties: number;
 }
 
-export function useScore(): [string, string, Score] {
+export function useScore(): [string, string, Score, (score: Score) => void] {
   const location = useLocation();
 
   const [typeGame] = useState<string>(location.state.typeGame);
@@ -21,5 +21,5 @@ export function useScore(): [string, string, Score] {
     ties: 0,
   });
 
-  return [typeGame, pickPlayer, score];
+  return [typeGame, pickPlayer, score, setScore];
 }
