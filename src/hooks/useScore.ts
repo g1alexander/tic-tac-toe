@@ -9,7 +9,12 @@ export interface Score {
   ties: number;
 }
 
-export function useScore(): [string, string, Score, (score: Score) => void] {
+export function useScore(): [
+  string,
+  string,
+  Score,
+  React.Dispatch<React.SetStateAction<Score>>
+] {
   const location = useLocation();
 
   const [typeGame] = useState<string>(location.state.typeGame);
