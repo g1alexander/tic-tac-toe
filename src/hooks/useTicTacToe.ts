@@ -41,7 +41,7 @@ export function useTicTacToe() {
       .filter((item) => item.value === invertTurn)
       .map((item) => item.id);
 
-    const playerWin = win(invertTurn, filterTurn, pickPlayer);
+    const playerWin = win(invertTurn, filterTurn, pickPlayer, typeGame);
 
     if (playerWin === "X") {
       setScore({
