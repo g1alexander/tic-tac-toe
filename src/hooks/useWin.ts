@@ -23,6 +23,7 @@ export function useWin() {
         },
         btnYellow: "next round",
         btnGray: "quit",
+        isNextRound: false,
       });
 
       return;
@@ -45,6 +46,7 @@ export function useWin() {
       },
       btnYellow: "next round",
       btnGray: "quit",
+      isNextRound: false,
     });
   };
 

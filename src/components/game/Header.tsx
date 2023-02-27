@@ -20,6 +20,7 @@ function Header({ isTurnX }: { isTurnX: boolean }) {
       },
       btnYellow: "yes, restart",
       btnGray: "no, cancel",
+      isNextRound: false,
     });
   };
   return (
