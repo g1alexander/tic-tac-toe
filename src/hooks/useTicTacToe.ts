@@ -11,6 +11,8 @@ import { ModalContext } from "@context/ContextModal";
 export function useTicTacToe() {
   const { modal, setModal } = useContext(ModalContext);
 
+  const [isContinueGame, setIsContinueGame] = useState(true);
+
   const [ticTacToe, setTicTacToe] = useState(gridGame);
 
   const [isTurnX, handleTurn] = useTurn();
@@ -37,19 +39,48 @@ export function useTicTacToe() {
     handleTurn(!isTurnX);
   };
 
+  const handleCpu = () => {
+    const emptyValues = ticTacToe.filter((item) => !item.value);
+
+    if (emptyValues.length > 0) {
+      if (pickPlayer === "O" && !isTurnX) return;
+
+      if (pickPlayer === "X" && isTurnX) return;
+
+      const numberRandom = Math.random() * emptyValues.length;
+
+      const random = Math.floor(numberRandom);
+      const id = emptyValues[random].id;
+      handleTicTacToe(id);
+    }
+  };
+
   useEffect(() => {
-    checkWinner(isTurnX ? "X" : "O", {
+    let playerWin = checkWinner(isTurnX ? "X" : "O", {
       ticTacToe,
       pickPlayer,
       typeGame,
       setScore,
       score,
     });
-  }, [isTurnX]);
+
+    if (playerWin) {
+      setIsContinueGame(false);
+      return;
+    }
+
+    if (typeGame === "cpu" && isContinueGame) {
+      handleCpu();
+    }
+  }, [isTurnX, isContinueGame]);
 
   useEffect(() => {
     if (modal.isNextRound) {
       setTicTacToe(gridGame);
+
+      setIsContinueGame(true);
+      handleTurn(true);
+
       setModal({
         ...modal,
         isNextRound: false,
