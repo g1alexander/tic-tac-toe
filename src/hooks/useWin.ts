@@ -6,7 +6,22 @@ import IconX from "@assets/icon-x.svg";
 export function useWin() {
   const modal = useContext(ModalContext);
 
-  const setModal = (invertTurn: string, pickPlayer: string) => {
+  const setModal = (invertTurn: string, pickPlayer: string, isTie = false) => {
+    if (isTie) {
+      modal?.setModal({
+        showModal: true,
+        title: "round tied",
+        message: {
+          text: "",
+          img: "",
+          color: "",
+        },
+        btnYellow: "next round",
+        btnGray: "quit",
+      });
+
+      return;
+    }
     modal?.setModal({
       showModal: true,
       title: invertTurn === pickPlayer ? "you won!" : "oh no, you lost…",
@@ -15,8 +30,8 @@ export function useWin() {
         img: invertTurn === "O" ? IconO : IconX,
         color: invertTurn === "O" ? "text-yellow-400" : "text-blue-400",
       },
-      btnYellow: "restart game?",
-      btnGray: "no, cancel",
+      btnYellow: "next round",
+      btnGray: "quit",
     });
   };
 
@@ -40,6 +55,7 @@ export function useWin() {
         filterTurn.includes(6)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -48,6 +64,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -56,6 +73,7 @@ export function useWin() {
         filterTurn.includes(7)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -64,6 +82,7 @@ export function useWin() {
         filterTurn.includes(8)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -72,6 +91,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -80,6 +100,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
 
       if (
@@ -88,7 +109,12 @@ export function useWin() {
         filterTurn.includes(7)
       ) {
         setModal(invertTurn, pickPlayer);
+        return;
       }
+    }
+
+    if (filterTurn.length === 5) {
+      setModal(invertTurn, pickPlayer, true);
     }
   };
 
