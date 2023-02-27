@@ -12,7 +12,7 @@ export function useTicTacToe() {
 
   const [isTurnX, handleTurn] = useTurn();
 
-  const [typeGame, pickPlayer, score] = useScore();
+  const [typeGame, pickPlayer, score, setScore] = useScore();
 
   const { win } = useWin();
 
@@ -41,11 +41,31 @@ export function useTicTacToe() {
       .filter((item) => item.value === invertTurn)
       .map((item) => item.id);
 
-    win(invertTurn, filterTurn, pickPlayer);
+    const playerWin = win(invertTurn, filterTurn, pickPlayer);
+
+    if (playerWin === "X") {
+      setScore({
+        ...score,
+        playerX: score.playerX + 1,
+      });
+    }
+
+    if (playerWin === "O") {
+      setScore({
+        ...score,
+        playerO: score.playerO + 1,
+      });
+    }
+
+    if (playerWin === "tie") {
+      setScore({
+        ...score,
+        ties: score.ties + 1,
+      });
+    }
   };
 
   useEffect(() => {
-    console.log(pickPlayer);
     checkWinner(isTurnX ? "X" : "O");
   }, [isTurnX]);
 

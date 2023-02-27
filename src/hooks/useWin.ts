@@ -39,7 +39,7 @@ export function useWin() {
     invertTurn: string,
     filterTurn: number[],
     pickPlayer: string
-  ) => {
+  ): string => {
     if (filterTurn.length >= 3) {
       if (
         filterTurn.includes(1) &&
@@ -47,7 +47,7 @@ export function useWin() {
         filterTurn.includes(3)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
       if (
         filterTurn.includes(4) &&
@@ -55,7 +55,7 @@ export function useWin() {
         filterTurn.includes(6)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -64,7 +64,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -73,7 +73,7 @@ export function useWin() {
         filterTurn.includes(7)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -82,7 +82,7 @@ export function useWin() {
         filterTurn.includes(8)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -91,7 +91,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -100,7 +100,7 @@ export function useWin() {
         filterTurn.includes(9)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
 
       if (
@@ -109,13 +109,17 @@ export function useWin() {
         filterTurn.includes(7)
       ) {
         setModal(invertTurn, pickPlayer);
-        return;
+        return invertTurn;
       }
     }
 
     if (filterTurn.length === 5) {
       setModal(invertTurn, pickPlayer, true);
+
+      return "tie";
     }
+
+    return "";
   };
 
   return { win };
