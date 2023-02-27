@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export function useTurn(): [boolean, (isTurnX: boolean) => void] {
+export function useTurn(): [boolean, (isTurn: boolean) => void] {
   const [isTurnX, setIsTurnX] = useState<boolean>(true);
 
-  const handleTurn = () => {
-    setIsTurnX(!isTurnX);
+  const handleTurn = (isTurn: boolean) => {
+    setIsTurnX(isTurn);
   };
 
   return [isTurnX, handleTurn];
