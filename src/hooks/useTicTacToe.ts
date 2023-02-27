@@ -17,7 +17,7 @@ export function useTicTacToe() {
 
   const [typeGame, pickPlayer, score, setScore] = useScore();
 
-  const { win } = useWin();
+  const { checkWinner } = useWin();
 
   const handleTicTacToe = (id: number) => {
     const newTicTacToe = ticTacToe.map((item) => {
@@ -37,39 +37,14 @@ export function useTicTacToe() {
     handleTurn(!isTurnX);
   };
 
-  const checkWinner = (turn: string) => {
-    const invertTurn = turn === "X" ? "O" : "X";
-
-    const filterTurn = ticTacToe
-      .filter((item) => item.value === invertTurn)
-      .map((item) => item.id);
-
-    const playerWin = win(invertTurn, filterTurn, pickPlayer, typeGame);
-
-    if (playerWin === "X") {
-      setScore({
-        ...score,
-        playerX: score.playerX + 1,
-      });
-    }
-
-    if (playerWin === "O") {
-      setScore({
-        ...score,
-        playerO: score.playerO + 1,
-      });
-    }
-
-    if (playerWin === "tie") {
-      setScore({
-        ...score,
-        ties: score.ties + 1,
-      });
-    }
-  };
-
   useEffect(() => {
-    checkWinner(isTurnX ? "X" : "O");
+    checkWinner(isTurnX ? "X" : "O", {
+      ticTacToe,
+      pickPlayer,
+      typeGame,
+      setScore,
+      score,
+    });
   }, [isTurnX]);
 
   useEffect(() => {

@@ -2,6 +2,16 @@ import { ModalContext } from "@context/ContextModal";
 import { useContext } from "react";
 import IconO from "@assets/icon-o.svg";
 import IconX from "@assets/icon-x.svg";
+import { Score } from "./useScore";
+import { GridGame } from "@helpers/gridGame";
+
+interface ObjectCheckWinner {
+  ticTacToe: GridGame[];
+  pickPlayer: string;
+  typeGame: string;
+  setScore: React.Dispatch<React.SetStateAction<Score>>;
+  score: Score;
+}
 
 export function useWin() {
   const modal = useContext(ModalContext);
@@ -138,5 +148,39 @@ export function useWin() {
     return "";
   };
 
-  return { win };
+  const checkWinner = (
+    turn: string,
+    { ticTacToe, pickPlayer, typeGame, setScore, score }: ObjectCheckWinner
+  ) => {
+    const invertTurn = turn === "X" ? "O" : "X";
+
+    const filterTurn = ticTacToe
+      .filter((item) => item.value === invertTurn)
+      .map((item) => item.id);
+
+    const playerWin = win(invertTurn, filterTurn, pickPlayer, typeGame);
+
+    if (playerWin === "X") {
+      setScore({
+        ...score,
+        playerX: score.playerX + 1,
+      });
+    }
+
+    if (playerWin === "O") {
+      setScore({
+        ...score,
+        playerO: score.playerO + 1,
+      });
+    }
+
+    if (playerWin === "tie") {
+      setScore({
+        ...score,
+        ties: score.ties + 1,
+      });
+    }
+  };
+
+  return { win, checkWinner };
 }
