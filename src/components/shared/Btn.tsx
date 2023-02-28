@@ -1,6 +1,17 @@
-function Btn({ classCSS, children }: { classCSS: string; children: any }) {
+function Btn({
+  classCSS,
+  children,
+  onClick,
+}: {
+  classCSS: string;
+  children: any;
+  onClick?: () => void;
+}) {
   return (
-    <button className={`uppercase text-black-400  py-3 px-3 ${classCSS}`}>
+    <button
+      onClick={onClick}
+      className={`uppercase text-black-400  py-3 px-3 cursor-default ${classCSS}`}
+    >
       {children}
     </button>
   );
