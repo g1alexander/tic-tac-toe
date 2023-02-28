@@ -97,5 +97,6 @@ export function useTicTacToe() {
     score,
     // methods
     handleTicTacToe,
+    setScore,
   };
 }

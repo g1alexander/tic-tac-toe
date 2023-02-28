@@ -9,10 +9,23 @@ function Home() {
   const navigate = useNavigate();
   const [pickPlayer, setPickPlayer] = useState<boolean>(true);
 
-  const handleClick = (typeGame: string) =>
+  const handleClick = (typeGame: string) => {
+    const localTypeGame = localStorage.getItem("typeGame") || "";
+    const localPickPlayer = localStorage.getItem("pickPlayer") || "";
+
+    const pickPlayerString = pickPlayer ? "X" : "O";
+
+    if (localPickPlayer !== pickPlayerString || localTypeGame !== typeGame) {
+      localStorage.removeItem("score");
+    }
+
+    localStorage.setItem("pickPlayer", pickPlayerString);
+    localStorage.setItem("typeGame", typeGame);
+
     navigate("/game", {
-      state: { typeGame, pickPlayer: pickPlayer ? "X" : "O" },
+      state: { typeGame, pickPlayer: pickPlayerString },
     });
+  };
 
   const handlePickPlayer = () => setPickPlayer(!pickPlayer);
 

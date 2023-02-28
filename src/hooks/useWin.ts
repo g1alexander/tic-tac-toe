@@ -161,24 +161,30 @@ export function useWin() {
     const playerWin = win(invertTurn, filterTurn, pickPlayer, typeGame);
 
     if (playerWin === "X") {
-      setScore({
+      const newScore = {
         ...score,
         playerX: score.playerX + 0.5,
-      });
+      };
+      setScore(newScore);
+      localStorage.setItem("score", JSON.stringify(newScore));
     }
 
     if (playerWin === "O") {
-      setScore({
+      const newScore = {
         ...score,
         playerO: score.playerO + 0.5,
-      });
+      };
+      setScore(newScore);
+      localStorage.setItem("score", JSON.stringify(newScore));
     }
 
     if (playerWin === "tie") {
-      setScore({
+      const newScore = {
         ...score,
         ties: score.ties + 0.5,
-      });
+      };
+      setScore(newScore);
+      localStorage.setItem("score", JSON.stringify(newScore));
     }
 
     return playerWin;
