@@ -9,7 +9,7 @@ import "@styles/tailwind.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <main className="bg-black-400 text-gray-400 h-screen">
+    <main className="bg-black-400 text-gray-400 h-screen flex flex-col justify-center items-center">
       <BrowserRouter>
         <ModalProvider>
           <App />

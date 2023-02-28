@@ -17,7 +17,7 @@ function Home() {
   const handlePickPlayer = () => setPickPlayer(!pickPlayer);
 
   return (
-    <section className="h-screen flex flex-col items-center justify-center gap-10">
+    <section className="h-[70vh] w-full sm:w-[60%] lg:w-[40%] flex flex-col items-center justify-center gap-10">
       <Logo width={10} height={10} />
 
       <article className="bg-black-300 w-[90%] rounded-lg p-5 text-center">

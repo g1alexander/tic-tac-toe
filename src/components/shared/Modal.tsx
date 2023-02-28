@@ -37,8 +37,8 @@ export default function Modal({
               onClick={() => modal.setModal(state)}
             ></div>
             <div className="flex items-center min-h-screen py-8">
-              <div className="relative w-full  px-4 py-7 mx-auto bg-black-300 shadow-lg">
-                <div className="mt-3">
+              <div className="relative w-full  px-4 py-7 md:py-12 mx-auto bg-black-300 shadow-lg">
+                <div className="mt-3 md:w-2/3 mx-auto">
                   <div className="mt-2 text-center sm:ml-4 sm:text-left">
                     <h4 className="text-lg uppercase text-center font-medium ">
                       {title}
@@ -62,7 +62,7 @@ export default function Modal({
                       <div
                         onClick={() => handleBtnGray(btnGray)}
                         className={`${
-                          btnGray === "quit" ? `w-1/4` : `w-auto`
+                          btnGray === "quit" ? `w-1/4 md:w-auto` : `w-auto`
                         } bg-gray-500 rounded-2xl pb-2`}
                       >
                         <Btn classCSS="bg-gray-400 rounded-2xl w-full">

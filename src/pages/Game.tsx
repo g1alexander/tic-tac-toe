@@ -8,13 +8,13 @@ function Game() {
     useTicTacToe();
 
   return (
-    <>
+    <section className="h-screen md:h-[70vh] w-full sm:w-[60%] lg:w-[40%] flex flex-col justify-center items-center">
       <Header {...{ isTurnX }} />
 
       <Grid {...{ ticTacToe, handleTicTacToe }} />
 
       <Score {...{ pickPlayer, score, typeGame }} />
-    </>
+    </section>
   );
 }
 

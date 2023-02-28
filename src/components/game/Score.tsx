@@ -25,7 +25,7 @@ function Score({
   };
 
   return (
-    <section className="flex justify-between w-[90%] mx-auto">
+    <section className="grid grid-cols-3 gap-5 w-[90%] mx-auto">
       <Btn classCSS="bg-blue-400 rounded-lg px-7">
         <span className="block uppercase text-xs">x ({handleCPU(true)})</span>
         <span className="font-bold block">{score.playerX}</span>
