@@ -1,4 +1,4 @@
-import { createBrowserRouter, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import Home from "@pages/Home";
 import Game from "@pages/Game";
 import ErrorPage from "@pages/Error";
