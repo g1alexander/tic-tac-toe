@@ -2,6 +2,8 @@ import { ModalContext } from "@context/ContextModal";
 import { useContext } from "react";
 import IconO from "@assets/icon-o.svg";
 import IconX from "@assets/icon-x.svg";
+import IconOOutline from "@assets/icon-o-outline.svg";
+import IconXOutline from "@assets/icon-x-outline.svg";
 import { Score } from "./useScore";
 import { GridGame } from "@helpers/gridGame";
 
@@ -11,6 +13,7 @@ interface ObjectCheckWinner {
   typeGame: string;
   setScore: React.Dispatch<React.SetStateAction<Score>>;
   score: Score;
+  setTicTacToe: React.Dispatch<React.SetStateAction<GridGame[]>>;
 }
 
 export function useWin() {
@@ -60,11 +63,36 @@ export function useWin() {
     });
   };
 
+  const newTickTacToeColor = (
+    ticTacToe: GridGame[],
+    pickPlayer: string,
+    position: number[] = []
+  ): GridGame[] => {
+    return ticTacToe.map((item) => {
+      if (position.includes(item.id)) {
+        return {
+          ...item,
+          icon:
+            item.value === pickPlayer
+              ? pickPlayer === "X"
+                ? IconXOutline
+                : IconOOutline
+              : item.icon,
+          isWinner: item.value === pickPlayer ? pickPlayer : "",
+        };
+      }
+
+      return item;
+    });
+  };
+
   const win = (
     invertTurn: string,
     filterTurn: number[],
     pickPlayer: string,
-    typeGame: string
+    typeGame: string,
+    ticTacToe: GridGame[],
+    setTicTacToe: React.Dispatch<React.SetStateAction<GridGame[]>>
   ): string => {
     if (filterTurn.length >= 3) {
       if (
@@ -72,6 +100,13 @@ export function useWin() {
         filterTurn.includes(2) &&
         filterTurn.includes(3)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [1, 2, 3]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -80,6 +115,13 @@ export function useWin() {
         filterTurn.includes(5) &&
         filterTurn.includes(6)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [4, 5, 6]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -89,6 +131,13 @@ export function useWin() {
         filterTurn.includes(8) &&
         filterTurn.includes(9)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [7, 8, 9]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -98,6 +147,13 @@ export function useWin() {
         filterTurn.includes(4) &&
         filterTurn.includes(7)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [1, 4, 7]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -107,6 +163,13 @@ export function useWin() {
         filterTurn.includes(5) &&
         filterTurn.includes(8)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [2, 5, 8]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -116,6 +179,13 @@ export function useWin() {
         filterTurn.includes(6) &&
         filterTurn.includes(9)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [3, 6, 9]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -125,6 +195,13 @@ export function useWin() {
         filterTurn.includes(5) &&
         filterTurn.includes(9)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [1, 5, 9]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -134,6 +211,13 @@ export function useWin() {
         filterTurn.includes(5) &&
         filterTurn.includes(7)
       ) {
+        const newTicTacToe = newTickTacToeColor(
+          ticTacToe,
+          invertTurn,
+          [3, 5, 7]
+        );
+        setTicTacToe(newTicTacToe);
+
         setModal(invertTurn, pickPlayer, typeGame);
         return invertTurn;
       }
@@ -150,7 +234,14 @@ export function useWin() {
 
   const checkWinner = (
     turn: string,
-    { ticTacToe, pickPlayer, typeGame, setScore, score }: ObjectCheckWinner
+    {
+      ticTacToe,
+      pickPlayer,
+      typeGame,
+      setScore,
+      score,
+      setTicTacToe,
+    }: ObjectCheckWinner
   ) => {
     const invertTurn = turn === "X" ? "O" : "X";
 
@@ -158,7 +249,14 @@ export function useWin() {
       .filter((item) => item.value === invertTurn)
       .map((item) => item.id);
 
-    const playerWin = win(invertTurn, filterTurn, pickPlayer, typeGame);
+    const playerWin = win(
+      invertTurn,
+      filterTurn,
+      pickPlayer,
+      typeGame,
+      ticTacToe,
+      setTicTacToe
+    );
 
     if (playerWin === "X") {
       const newScore = {

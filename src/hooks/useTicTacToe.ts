@@ -62,6 +62,7 @@ export function useTicTacToe() {
       typeGame,
       setScore,
       score,
+      setTicTacToe,
     });
 
     if (playerWin) {
